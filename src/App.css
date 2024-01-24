@@ -1,0 +1,93 @@
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.relative {
+    position: relative;
+}
+
+.content-preview {
+    width: 40%;
+}
+
+.content-editor {
+    width: 60%;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+.actions {
+    /*position: absolute;*/
+    /*bottom: 2rem;*/
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.dark {
+    color: #fff;
+    background-color: #1e1e1e;
+}
+
+.light {
+    background-color: #fff;
+    color: #1e1e1e;
+}
+
+.hint-editor {
+    overflow: hidden;
+}
+
+.btn {
+    border: unset;
+    outline: unset;
+    padding: 0.6rem 1.5rem;
+    border: 1px solid;
+    background-color: transparent;
+    border-radius: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-transform: capitalize;
+}
+
+.check-answer {
+    border-color: #49b4f3;
+    color: #49b4f3;
+}
+
+.try-again {
+    border-color: #d81159;
+    color: #d81159;
+}
+
+.try-again:hover {
+    background-color: #d81159;
+    color: #fff;
+}
+
+.check-answer:hover {
+    background-color: #49b4f3;
+    color: #fff;
+}
+
+.hint-message {
+    min-width: 300px;
+    max-width: 100%;
+}
