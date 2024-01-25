@@ -14,13 +14,7 @@ const FormattedEditor = (
         language = '',
         handleFinish = () => {},
         options = {
-            selectOnLineNumbers: true,
             renderSideBySide: false,
-            ignoreTrimWhitespace: true,
-            diffAlgorithm: 'advanced',
-            experimental: {
-                showEmptyDecorations: false
-            },
             minimap: {
                 enabled: false
             }
@@ -42,7 +36,7 @@ const FormattedEditor = (
         const wrongAnswers = splitAnswers.map((row, rowIndex) => row === splitCurrentContent[rowIndex] ? '' : splitCurrentContent[rowIndex])
 
         setHint(hints.join('\n'));
-        setWrongAnswers(wrongAnswers.join('\n') || '');
+        setWrongAnswers(wrongAnswers.join('\n'));
         if (answer === editorContentRef.current) {
             handleFinish(content)
         } else {
@@ -61,10 +55,6 @@ const FormattedEditor = (
 
     const handleHideAnswer = () => {
         setIsShowAnswer(false)
-        const splitAnswers = answer.split('\n')
-        const splitCurrentContent = editorContentRef.current.split('\n')
-        const wrongAnswers = splitAnswers.map((row, rowIndex) => row === splitCurrentContent[rowIndex] ? '' : splitCurrentContent[rowIndex])
-        setWrongAnswers(wrongAnswers.join('\n'))
     }
 
     return (
@@ -95,19 +85,34 @@ const FormattedEditor = (
                         <div className={mode}>
                             Hint
                         </div>
-                        <MonacoDiffEditor
-                            width="100%"
-                            height={'100%'}
-                            language={language}
-                            theme={`vs-${mode}`}
-                            value={isShowAnswer ? answer : isAnswered ? hint : ''}
-                            original={isShowAnswer ? editorContentRef.current : wrongAnswers}
-                            options={{
-                                ...options,
-                                readOnly: true
-                            }}
-                            onChange={handleWriteAnswer}
-                        />
+                        { isShowAnswer ? (
+                            <MonacoEditor
+                                width="100%"
+                                height={'100%'}
+                                language={language}
+                                theme={`vs-${mode}`}
+                                value={answer}
+                                options={{
+                                    ...options,
+                                    readOnly: true
+                                }}
+                                onChange={handleWriteAnswer}
+                            />
+                        ) : (
+                            <MonacoDiffEditor
+                                key={Math.random()}
+                                width="100%"
+                                height={'100%'}
+                                language={language}
+                                theme={`vs-${mode}`}
+                                value={hint}
+                                original={wrongAnswers}
+                                options={{
+                                    ...options,
+                                    readOnly: true
+                                }}
+                            />
+                        ) }
                     </div>
 
 
