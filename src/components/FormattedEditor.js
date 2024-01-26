@@ -1,11 +1,10 @@
 import React, {useCallback, useRef, useState} from "react";
 import MonacoEditor, { MonacoDiffEditor } from "react-monaco-editor";
-import MarkdownPreview from '@uiw/react-markdown-preview';
 import '../App.css';
 
 const FormattedEditor = (
     {
-        content = '',
+        content,
         filename = '',
         height = '300px',
         initialCode = '',
@@ -58,19 +57,19 @@ const FormattedEditor = (
     }
 
     return (
-        <div className="h-full flex">
+        <div className={`h-full flex ${mode}`}>
             <div style={{ height }} className="content-preview h-full">
-                <MarkdownPreview
-                    source={`# ${filename} \n ${content}`}
-                    className="w-full h-full overflow-auto"
-                    wrapperElement={{
-                       "data-color-mode": mode
-                    }}
-                />
+                <div
+                    className={`w-full h-full overflow-auto `}
+                >
+                    <h2>{filename}</h2>
+
+                    {content}
+                </div>
             </div>
             <div className="content-editor relative h-full" style={{ height }}>
                 <>
-                    <div style={{ height: 'calc(60% - 25px)' }}>
+                    <div style={{ height: 'calc(60% - 45px)' }}>
                         <MonacoEditor
                             width="100%"
                             height={'100%'}
@@ -82,7 +81,7 @@ const FormattedEditor = (
                         />
                     </div>
                     <div style={{ height: 'calc(40% - 25px)' }} className="hint-editor">
-                        <div className={mode}>
+                        <div>
                             Hint
                         </div>
                         { isShowAnswer ? (
@@ -115,8 +114,7 @@ const FormattedEditor = (
                         ) }
                     </div>
 
-
-                    <div className={`${mode} actions`}>
+                    <div className={`actions`}>
                         {isAnswered ? (
                             <div className="flex gap-4">
                                 { !isShowAnswer ? (

@@ -16,9 +16,11 @@
 
 .content-preview {
     width: 40%;
+    padding-inline: 20px;
 }
 
 .content-editor {
+    padding-inline: 20px;
     width: 60%;
 }
 
@@ -52,6 +54,7 @@
 
 .hint-editor {
     overflow: hidden;
+    padding-top: 20px;
 }
 
 .btn {
@@ -90,4 +93,20 @@
 .hint-message {
     min-width: 300px;
     max-width: 100%;
+}
+
+.dark .content-preview {
+    border-right: 1px solid #ffffff;
+}
+
+.light .content-preview {
+    border-right: 1px solid #1e1e1e;
+}
+
+.dark .hint-editor {
+    border-top: 1px solid #ffffff;
+}
+
+.light .hint-editor {
+    border-top: 1px solid #1e1e1e;
 }
